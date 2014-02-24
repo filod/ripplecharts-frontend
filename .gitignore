@@ -1,5 +1,4 @@
 src/app/
-deps/
 vendor/
 assets/*
 !assets/modules-0.0.1.css
