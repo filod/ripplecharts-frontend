@@ -181,6 +181,20 @@ module.exports = function ( grunt ) {
             expand: true
           }
         ]
+      },
+      dist_modules: {
+        files: [
+          {
+            src: [ '**' ],
+            dest: 'dist/',
+            cwd: '<%= build_dir %>/',
+            expand: true
+          },
+          {
+            src: [ 'bower.json' ],
+            dest: 'dist/'
+          }
+        ]
       }
     },
 
@@ -541,7 +555,10 @@ module.exports = function ( grunt ) {
         files: [
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs', 'embed:build' ]
+        // tasks: [ 'jshint:src', 'karma:unit:run', 'copy:build_appjs', 'embed:build' ]
+
+        // just for modules dev
+        tasks: [ 'jshint:src', 'copy:build_appjs']
       },
 
       embed: {
@@ -577,6 +594,10 @@ module.exports = function ( grunt ) {
       html: {
         files: [ '<%= app_files.html %>' ],
         tasks: [ 'index:build' ]
+      },
+      mhtml: {
+        files: [ '<%= app_files.mhtml %>' ],
+        tasks: [ 'modules:build' ]
       },
 
       /**
@@ -666,6 +687,38 @@ module.exports = function ( grunt ) {
     'embed:build'
     // ,'karmaconfig',           'karma:continuous'
   ]);
+
+  function execCommand() {
+    var child = exec.apply(null, arguments)
+    child.stderr.pipe(process.stderr)
+  }
+
+  var exec = require('child_process').exec
+  grunt.registerTask('deploy-modules', function() {
+    grunt.file.setBase('./dist')
+    var done = this.async()
+    grunt.util.async.series([
+      function(next) {
+        execCommand('git status', function(err, data) {
+          if (err || !data.length) {
+            return done(err)
+          } else if (data.indexOf('nothing to commit') > -1) {
+            return done(new Error(data))
+          }
+          next(null)
+        })
+      },
+      function(next) { execCommand('git add .', next) },
+      function(next) { execCommand('git commit -am \'updated dist at ' + new Date().toLocaleString() + '\'', next) },
+      function(next) { execCommand('git push origin dist', next) }
+    ], done)
+  });
+
+
+  grunt.registerTask( 'dist-modules', [
+    'build', 'copy:dist_modules', 'deploy-modules'
+  ]);
+
 
   /**
    * The `compile` task gets your app ready for deployment by concatenating and

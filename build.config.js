@@ -37,6 +37,7 @@ module.exports = {
     mtpl: [ 'src/modules/**/*.tpl.html' ],
 
     html: [ 'src/index.html' ],
+    mhtml: [ 'src/modules.html' ],
     less: 'src/less/main.less',
     mless: 'src/less/modules.less'
   },

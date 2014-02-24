@@ -1,7 +1,7 @@
 {
   "name": "ripplecharts",
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "angular": "~1.2.7",
     "angular-mocks": "~1.0.7",
     "bootstrap": "~2.3.2",
@@ -18,7 +18,5 @@
     "modernizr": "~2.7.1",
     "jquery": "~2.0.3",
     "jscrollpane": "~2.0.14"
-  },
-  "dependencies": {
   }
 }

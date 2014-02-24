@@ -18,7 +18,11 @@
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
   </head>
-  <body>
-    <div ripplecharts-price></div>
+  <body ng-controller="AppCtrl">
+    <div ripplecharts-price base="base" trade="trade"></div>
+    <br><hr><br><br><hr><br>
+    <div ripplecharts-book base="base" trade="trade"></div>
+    <br><hr><br><br><hr><br>
+    <div ripplecharts-tradefeed base="base" trade="trade"></div>
   </body>
 </html>

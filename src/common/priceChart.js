@@ -71,14 +71,14 @@ PriceChart = function (options) {
     gEnter.append("g").attr("class", "x axis");
 
     gEnter.append("g").attr("class", "volume axis")
-      .append("text").text("Volume")
+      .append("text").text("成交量")
       .attr("class", "title")
       .attr("transform", "rotate(-90)")
       .attr("y",15).attr("x",-110);
 
     gEnter.append("g").attr("class", "price axis")
       .attr("transform", "translate("+options.width+", 0)")
-      .append("text").text("Price")
+      .append("text").text("价格")
         .attr("class", "title")
         .attr("transform", "rotate(-90)")
         .attr("y",-10).attr("x",-100);
@@ -345,7 +345,7 @@ PriceChart = function (options) {
 
   function drawData () {
     if (!isLoading && (!lineData || !lineData.length)) {
-      setStatus("No Data for this Period");
+      setStatus("暂无数据");
     } else setStatus("");
 
     if (type == 'line') {
@@ -370,8 +370,8 @@ PriceChart = function (options) {
       .on("mousemove", showDetails)
       .on("touchmove", showDetails);
 
-    gEnter.select(".axis.price").select("text").text("Price ("+trade.currency+")");
-    gEnter.select(".axis.volume").select("text").text("Volume ("+base.currency+")");
+    gEnter.select(".axis.price").select("text").text("价格 ("+trade.currency+")");
+    gEnter.select(".axis.volume").select("text").text("成交量 ("+base.currency+")");
     var bars = gEnter.select(".volumeBars").selectAll("rect").data(lineData, function(d){return d.time;});
     bars.enter().append("rect");
 
@@ -508,11 +508,11 @@ PriceChart = function (options) {
 
       var details = div.select('.chartDetails');
       details.html("<span class='date'>"+ parseDate(d.time.local(), chartInterval) +
-        "</span><span>O:<b>" + o  + "</b></span>" +
-        "<span class='high'>H:<b>" + h + "</b></span>" +
-        "<span class='low'>L:<b>" + l + "</b></span>" +
-        "<span>C:<b>" + c  + "</b></span>" +
-        "<span class='volume'>Volume:<b>" + v + " " + base.currency + "</b></span>")
+        "</span><span>开:<b>" + o  + "</b></span>" +
+        "<span class='high'>高:<b>" + h + "</b></span>" +
+        "<span class='low'>低:<b>" + l + "</b></span>" +
+        "<span>收:<b>" + c  + "</b></span>" +
+        "<span class='volume'>成交量:<b>" + v + " " + base.currency + "</b></span>")
         .style("opacity",1);
 
       hover.transition().duration(50).attr("transform", "translate(" + xScale(d.time) + ")");
@@ -585,14 +585,20 @@ PriceChart = function (options) {
 
 
 //display the date in a nice format
+  // function parseDate (date, increment) {
+  //   var monthNames = [ "January", "February", "March", "April", "May", "June",
+  //     "July", "August", "September", "October", "November", "December" ];
+
+
+  //   if      (increment == "mo") return monthNames[date.month()] + " " + date.year();
+  //   else if (increment == "da")   return monthNames[date.month()] + " " + date.date();
+  //   else if (increment == "ho")  return monthNames[date.month()] + " " + date.date() + " &middot " + date.format("hh:mm A");
+  //   else return monthNames[date.month()] + " " + date.date() + " &middot " + date.format("hh:mm:ss A");
+  // }
+
   function parseDate (date, increment) {
-    var monthNames = [ "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December" ];
-
-
-    if      (increment == "mo") return monthNames[date.month()] + " " + date.year();
-    else if (increment == "da")   return monthNames[date.month()] + " " + date.date();
-    else if (increment == "ho")  return monthNames[date.month()] + " " + date.date() + " &middot " + date.format("hh:mm A");
-    else return monthNames[date.month()] + " " + date.date() + " &middot " + date.format("hh:mm:ss A");
+    if      (increment == "mo") return date.format('YYYY-MM');
+    else if (increment == "da")   return date.format('YYYY-MM-DD');
+    else return date.format('MM-DD HH:mm');
   }
 }

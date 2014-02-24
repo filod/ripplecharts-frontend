@@ -16,4 +16,12 @@ angular.element(document).ready(function() {
     angular.bootstrap(document, ['ripplecharts.modules']);
 
   });
+
+  angular.module('ripplecharts.modules')
+  .controller('AppCtrl', function($scope){
+
+    $scope.base = { currency:"XRP", issuer:""};
+    $scope.trade = { currency:"CNY", issuer:"razqQKzJRdB4UxFPWf5NEpEG3WMkmwgcXA"};
+  });
+
 });

@@ -7,7 +7,7 @@
 
     <!-- D3 needs this -->
     <meta charset="utf-8">
-    
+
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@ripple">
@@ -27,7 +27,7 @@
       MIXPANEL = "<%= mixpanel %>";
       API      = "<%= api %>";
     </script>
-    
+
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
@@ -51,10 +51,10 @@ mixpanel.init(MIXPANEL);</script><!-- end Mixpanel -->
         <div class="theme selectList">
           <a ng-click="theme = 'light'" ng-class="{selected : theme == 'light'}">Light</a>
           <a ng-click="theme = 'dark'"  ng-class="{selected : theme == 'dark'}">Dark</a>
-        </div>  
+        </div>
       </div>
-    </div>   
-             
+    </div>
+
     <div snap-drawer>
       <ul class="nav">
         <li class="top">
@@ -65,10 +65,10 @@ mixpanel.init(MIXPANEL);</script><!-- end Mixpanel -->
               <a href="#/" snap-close>Dashboard</a>
             </li>
           </ul>
-        </li> 
+        </li>
         <li class="category">
           <a href="#/markets" snap-close><img src="assets/icons/999_markets.svg">Markets</a>
-        </li> 
+        </li>
         <li class="page">
           <ul>
             <li ui-route="/markets(/.+)?" ng-class="{active:$uiRoute !== false}">
@@ -78,10 +78,10 @@ mixpanel.init(MIXPANEL);</script><!-- end Mixpanel -->
               <a href="#/multimarkets" snap-close>Multi Markets</a>
             </li>
           </ul>
-        </li>  
+        </li>
         <li class="category">
           <a href="#/graph" snap-close><img src="assets/icons/999_accounts.svg"></i>Accounts</a>
-        </li> 
+        </li>
         <li class="page">
           <ul>
             <li ui-route="/graph(/.+)?" ng-class="{active:$uiRoute !== false}">
@@ -91,21 +91,21 @@ mixpanel.init(MIXPANEL);</script><!-- end Mixpanel -->
               <a href="#/accounts" snap-close>Accounts Created</a>
             </li>
           </ul>
-        </li> 
+        </li>
       </ul>
     </div snap-drawer>
-    
-    <div snap-content class="snap-content" snap-options="snapOptions">    
-      
+
+    <div snap-content class="snap-content" snap-options="snapOptions">
+
       <div class="headerPad"></div>
       <div ui-view="main"></div>
       <div class="footerPad"></div>
-      
+
       <footer class="footer">
         <div class="footerInner container">
           Ripple Charts is built and maintained by Ripple Labs, based on data from the Ripple Network.
           <div class="disclaimer">
-            Information is provided "as is" and solely as an informative resource.  
+            Information is provided "as is" and solely as an informative resource.
             Ripple Charts is not a trading advisor. Data may be delayed or incorrect.
           </div>
           <div class="links">
@@ -123,12 +123,12 @@ mixpanel.init(MIXPANEL);</script><!-- end Mixpanel -->
             &middot;
             <a href="https://github.com/ripple/ripplecharts-frontend" target="_blank">Github</a>
             &middot;
-            <a href="https://ripplelabs.atlassian.net/browse/RC" target="_blank">Bug Reports</a>              
-          </div>  
-          
+            <a href="https://ripplelabs.atlassian.net/browse/RC" target="_blank">Bug Reports</a>
+          </div>
+
           <small><a style="display:none" href="">v<%= version %></a></small>
         </div>
       </footer>
-    </div>    
+    </div>
   </body>
 </html>
