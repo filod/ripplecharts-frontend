@@ -1,0 +1,587 @@
+@import url(priceChart.css);
+
+@import url(orderBook.css);
+
+#trades {
+  overflow: hidden;
+  color: #aaa;
+  background: rgba(200, 220, 240, 0.3);
+}
+
+.markets .helpbox .type {
+  width: 5px;
+  padding: 0;
+  background: #ccc;
+}
+
+.markets .helpbox table {
+  margin: 10px;
+}
+
+.markets .helpbox table th {
+  padding: 2px 10px;
+}
+
+.markets .helpbox .bid {
+  background: indianred;
+}
+
+.markets .helpbox .ask {
+  background: mediumseagreen;
+}
+
+.dark .markets .helpbox .type {
+  background: #555;
+}
+
+.dark .markets .helpbox .bid {
+  background: #c22;
+}
+
+.dark .markets .helpbox .ask {
+  background: #4a4;
+}
+
+.markets {
+  text-align: center;
+}
+
+.markets h2 {
+  text-align: center;
+}
+
+#currencyPair {
+  margin: 10px 60px 5px 60px;
+  text-align: left;
+}
+
+#currencyPair .gateway {
+  min-width: 150px;
+}
+
+#currencyPair h3 {
+  margin: 0 0 .5em;
+  background: #f6f6f6;
+}
+
+#base,
+#quote {
+  display: inline-block;
+}
+
+#toCSV {
+  display: inline-block;
+  width: 30px;
+  padding: 0 5px;
+  margin: 2px 5px;
+  color: #ccc;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+#flip {
+  display: inline-block;
+  width: 40px;
+  margin: 3px 5px;
+  font-family: "Open Sans";
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  cursor: pointer;
+}
+
+#flip span {
+  border-bottom: 3px solid transparent;
+}
+
+#flip:hover span {
+  border-color: #666;
+}
+
+.rippleStatus {
+  float: right;
+  margin-top: 2px;
+  overflow: hidden;
+  color: #aaa;
+}
+
+.rippleStatus .items {
+  display: table;
+  margin-top: 2px;
+}
+
+.rippleStatus .items div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.rippleStatus .label {
+  padding: 0 5px;
+  font-size: 10px;
+}
+
+.rippleStatus .index {
+  font-size: 13px;
+}
+
+.rippleStatus svg {
+  float: right;
+  opacity: .65;
+}
+
+.rippleStatus svg.disconnected circle {
+  fill: #c00;
+}
+
+.rippleStatus svg.connected circle {
+  fill: #080;
+}
+
+#interval {
+  float: left;
+  margin-left: 60px;
+  clear: both;
+}
+
+#chartType {
+  float: right;
+  margin-right: 60px;
+}
+
+#bookChart {
+  margin-top: 15px;
+}
+
+/*
+ *  dark theme 
+ */
+
+.dark .rippleStatus {
+  font-weight: bold;
+  color: #555555;
+}
+
+/*
+ * Responsive tweaks 
+ */
+
+.markets .span3 {
+  width: 26.5% !important;
+  margin-left: 1% !important;
+}
+
+.markets .span3 .helpbox {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.markets .span9 {
+  width: 72% !important;
+  margin: 0 !important;
+}
+
+.markets .span9 .helpbox {
+  margin-right: 60px;
+  margin-left: 60px;
+}
+
+@media (max-width: 1100px) {
+  .markets .dropdowns,
+  .markets #flip,
+  .markets #toCSV {
+    float: left;
+  }
+  .markets #quote {
+    clear: left;
+  }
+}
+
+@media (max-width: 979px) {
+  .markets .span3,
+  .markets .span9 {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  .markets .span3 {
+    display: table;
+    border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+  }
+  .markets .span3 .helpbox {
+    display: table-caption;
+    margin-right: 60px;
+    margin-left: 60px;
+  }
+  #tradeFeed {
+    display: table-row;
+  }
+  #tradeFeed .summary {
+    display: table-cell;
+    width: 50% !important;
+    vertical-align: top;
+    border-right: 1px solid rgba(150, 150, 150, 0.2);
+  }
+  #tradeFeed .table {
+    display: table-cell;
+    vertical-align: top;
+  }
+  #tradeFeed .tableWrap {
+    height: 120px;
+    overflow: auto;
+  }
+  .markets .dropdowns,
+  .markets #flip,
+  .markets #toCSV {
+    float: none;
+  }
+}
+
+@media (max-width: 840px) {
+  #currencyPair {
+    width: 94%;
+    margin: 10px 3%;
+    text-align: center;
+  }
+  .rippleStatus {
+    float: none;
+    text-align: center;
+  }
+  .rippleStatus .items {
+    display: inline-table;
+    margin: 0 10px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .markets .span3 {
+    display: block;
+    border-color: #ccc;
+  }
+  .markets .span3 .helpbox {
+    display: inherit;
+  }
+  #tradeFeed {
+    display: block;
+  }
+  #tradeFeed .tableWrap {
+    height: 73px;
+    border-top: 1px solid #ccc;
+  }
+  .dark #tradeFeed .tableWrap,
+  .dark .markets .span3 {
+    border-color: #444;
+  }
+  #tradeFeed .summary {
+    display: block;
+    width: 100% !important;
+    border: none;
+  }
+  #tradeFeed .table {
+    display: block;
+  }
+  #currencyPair {
+    display: inline-block;
+    width: 400px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #currencyPair select {
+    padding: 5px 40px 5px 5px;
+    font-size: 16px;
+    background-size: 20px;
+  }
+  #currencyPair .gateway {
+    min-width: 200px;
+  }
+  .dark #currencyPair select {
+    border-width: 3px;
+  }
+  .rippleStatus {
+    zoom: 1.5;
+  }
+  #interval {
+    margin-left: 20px;
+    zoom: 1.25;
+  }
+  #interval label {
+    display: none;
+  }
+  #chartType {
+    margin-right: 20px;
+    zoom: 1.25;
+  }
+  #flip {
+    margin-right: -5px;
+    font-size: 16px;
+  }
+  #toCSV {
+    width: 40px;
+    padding: 0;
+    margin-right: -5px;
+  }
+  #toCSV img {
+    width: 35px;
+  }
+  .markets .span3 .showHelp {
+    margin: 10px;
+  }
+  .markets .wrap .showHelp {
+    margin: 10px;
+    zoom: 1.33;
+  }
+}
+
+/**
+ * These are the variables used throughout the application. This is where 
+ * overwrites that are not specific to components should be maintained.
+ */
+
+/**
+ * Typography-related.
+ */
+
+.priceChart {
+  position: relative;
+  width: 100%;
+  clear: both;
+}
+
+.priceChart .background {
+  pointer-events: all;
+  fill: none;
+  stroke: #999;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.priceChart .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.priceChart .axis {
+  fill: #999;
+  shape-rendering: crispEdges;
+}
+
+.priceChart .axis .title {
+  stroke-width: 1;
+  stroke: #bbb;
+  fill: #bbb;
+}
+
+.priceChart .axis path,
+.priceChart .axis line {
+  fill: none;
+  stroke: #999;
+  stroke-width: 1;
+}
+
+.priceChart .axis text {
+  font-size: 10px;
+}
+
+.priceChart .axis.price text,
+.priceChart .axis.volume text {
+  font-size: 12px;
+}
+
+.priceChart path {
+  fill: none;
+  stroke: #3369a8;
+  stroke-width: 2;
+}
+
+.priceChart line {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+.priceChart .status {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  color: #aaa;
+  text-align: center;
+}
+
+.priceChart .hover {
+  stroke: #999;
+  stroke-width: 1;
+}
+
+.priceChart .focus {
+  fill: rgba(255, 255, 255, 0.5);
+  stroke: #999;
+}
+
+.priceChart .focus.dark {
+  fill: #555;
+  stroke: none;
+}
+
+.candlesticks rect {
+  fill: #c33;
+  stroke: #622;
+  stroke-width: 1;
+}
+
+.candlesticks line {
+  stroke: #777;
+}
+
+.candlesticks .up rect {
+  fill: #3c5;
+  stroke: #262;
+}
+
+.candlesticks line {
+  stroke-width: 2;
+}
+
+.priceChart .volumeBars rect {
+  fill: #ddd;
+  stroke: #bbb;
+}
+
+.priceChart .title {
+  font-size: 15px;
+}
+
+div.chartDetails {
+  position: absolute;
+  top: 1px;
+  padding: 1px 5px;
+  font-size: 14px;
+  color: #333;
+  text-align: right;
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+}
+
+div.chartDetails span {
+  display: inline-block;
+  margin: 0 .25em;
+  font-size: 12px;
+  color: #999;
+}
+
+div.chartDetails b {
+  margin: 0 0.25em;
+}
+
+div.chartDetails .date {
+  margin-right: 20px;
+  text-align: right;
+}
+
+div.chartDetails .high {
+  color: #009900;
+}
+
+div.chartDetails .low {
+  color: #990000;
+}
+
+div.chartDetails .volume {
+  color: #336699;
+}
+
+/*
+ * dark theme 
+ */
+
+.dark .priceChart .background,
+.dark .priceChart .hover,
+.dark .priceChart .axis path,
+.dark .priceChart .axis line {
+  stroke: #404040;
+}
+
+.dark .priceChart .axis text {
+  fill: #666;
+  stroke: #666;
+}
+
+.dark .priceChart .volumeBars rect {
+  opacity: .4;
+  stroke: #888;
+}
+
+.dark .priceChart .status {
+  color: #666;
+}
+
+.dark .candlesticks line {
+  stroke-width: 1;
+  stroke: #a00;
+}
+
+.dark .candlesticks .filled rect {
+  fill: #a00;
+}
+
+.dark .candlesticks .up line {
+  stroke: #393;
+}
+
+.dark .candlesticks .up rect {
+  stroke: #339933;
+}
+
+.dark .candlesticks .filled.up rect {
+  fill: #393;
+  stroke: #393;
+}
+
+.dark .candlesticks rect {
+  fill: #000;
+  stroke-width: 1;
+  stroke: #a00;
+}
+
+.dark .chartDetails {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.selectList label {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #999;
+}
+
+.dark .selectList label {
+  color: #444;
+}
+
+.selectList a {
+  display: inline-block;
+  margin: 0 4px;
+  font-size: 12px;
+  line-height: 13px;
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.selectList a:hover {
+  color: #999;
+  border-bottom: 3px solid #999;
+}
+
+.selectList a.selected {
+  font-weight: bold;
+  color: #3369a8;
+  border-bottom: 3px solid #3369a8;
+}

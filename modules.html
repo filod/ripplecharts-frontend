@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title ng-bind="pageTitle">Ripple Charts Directives Test</title>
+    <link rel="icon" type="image/ico" href="assets/images/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- D3 needs this -->
+    <meta charset="utf-8">
+
+    <script>
+      API      = "REPLACEME";
+    </script>
+
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/modules-0.0.1.css" />
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="vendor/snapjs/snap.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/angular-touch/angular-touch.js"></script>
+    <script type="text/javascript" src="vendor/angular-snap/angular-snap.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-utils/modules/route/route.js"></script>
+    <script type="text/javascript" src="vendor/underscore/underscore.js"></script>
+    <script type="text/javascript" src="vendor/moment/moment.js"></script>
+    <script type="text/javascript" src="vendor/store/dist/store2.js"></script>
+    <script type="text/javascript" src="vendor/modernizr/modernizr.js"></script>
+    <script type="text/javascript" src="vendor/d3/d3.js"></script>
+    <script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="vendor/jscrollpane/script/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="vendor/jscrollpane/script/jquery.jscrollpane.js"></script>
+    <script type="text/javascript" src="deps/jquery.selectbox.min.js"></script>
+    <script type="text/javascript" src="deps/jquery.inview.js"></script>
+    <script type="text/javascript" src="deps/ripple-0.7.31.js"></script>
+    <script type="text/javascript" src="deps/offersExercisedListener.js"></script>
+    <script type="text/javascript" src="deps/onResize.js"></script>
+    <script type="text/javascript" src="src/common/apiHandler.js"></script>
+    <script type="text/javascript" src="src/common/capChart.js"></script>
+    <script type="text/javascript" src="src/common/dropdowns.js"></script>
+    <script type="text/javascript" src="src/common/graph.js"></script>
+    <script type="text/javascript" src="src/common/jsonToCSV.js"></script>
+    <script type="text/javascript" src="src/common/lineChart.js"></script>
+    <script type="text/javascript" src="src/common/multimarket.js"></script>
+    <script type="text/javascript" src="src/common/orderBook.js"></script>
+    <script type="text/javascript" src="src/common/priceChart.js"></script>
+    <script type="text/javascript" src="src/common/totalAccounts.js"></script>
+    <script type="text/javascript" src="src/common/tradeFeed.js"></script>
+    <script type="text/javascript" src="src/common/transactionFeed.js"></script>
+    <script type="text/javascript" src="src/config.js"></script>
+    <script type="text/javascript" src="src/modules/entry.js"></script>
+    <script type="text/javascript" src="src/modules/markets.js"></script>
+    <script type="text/javascript" src="src/modules/orderbook.js"></script>
+    <script type="text/javascript" src="src/modules/price.js"></script>
+    <script type="text/javascript" src="templates-common.js"></script>
+    <script type="text/javascript" src="templates-modules.js"></script>
+  </head>
+  <body>
+    <div ripplecharts-price></div>
+  </body>
+</html>
