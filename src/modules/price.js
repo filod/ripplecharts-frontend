@@ -15,9 +15,9 @@ angular.module('ripplecharts.modules')
 
       $scope.trade = $scope.trade || { currency:"USD", issuer:"rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"};
 
-      $scope.chartType = "line";
+      $scope.chartType = store.get('chartType') || "line";
 
-      $scope.interval  = "1h";
+      $scope.interval  = store.get('interval') || "1h";
 
       //set up the interval selector
       var list = d3.select("#interval").attr("class","selectList");

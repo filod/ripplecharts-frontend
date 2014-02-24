@@ -28,6 +28,8 @@ angular.module('ripplecharts.modules')
         emit    : emitHandler
       });
 
+      book.getMarket($scope.base, $scope.trade);
+
     //stop the listeners when leaving page
       $scope.$on("$destroy", function(){
         // priceChart.suspend();
