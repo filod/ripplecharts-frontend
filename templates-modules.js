@@ -8,6 +8,7 @@ angular.module("markets.tpl.html", []).run(["$templateCache", function($template
     "  </div>\n" +
     "\n" +
     "  <div class=\"wrap span9\">\n" +
+    "\n" +
     "    <div id=\"currencyPair\">\n" +
     "      <div class=\"rippleStatus\">\n" +
     "        <div class=\"items\">\n" +
@@ -33,8 +34,8 @@ angular.module("markets.tpl.html", []).run(["$templateCache", function($template
     "    <div id=\"interval\"></div>\n" +
     "    <div id=\"chartType\"></div>\n" +
     "    <div id=\"priceChart\"></div>\n" +
-    "    <div id=\"bookChart\" ></div>\n" +
-    "    <div id=\"bookTables\"></div>\n" +
+    "\n" +
+    "    <div id=\"bookChart\" ></div><div id=\"bookTables\"></div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "<style>\n" +

@@ -595,6 +595,392 @@ div.chartDetails .volume {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.orderbookChart {
+  position: relative;
+  width: 100%;
+  clear: both;
+}
+
+.orderbookChart .background {
+  pointer-events: all;
+  fill: none;
+  stroke: #999;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+
+.orderbookChart .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  margin-top: -35px;
+  margin-left: -20px;
+}
+
+.orderbookChart .axis {
+  fill: #999;
+  shape-rendering: crispEdges;
+}
+
+.orderbookChart .axis .title {
+  stroke-width: 1;
+  stroke: #bbb;
+  fill: #bbb;
+}
+
+.orderbookChart .axis path,
+.orderbookChart .axis line {
+  fill: none;
+  stroke: #999;
+  stroke-width: 1;
+}
+
+.orderbookChart .axis text {
+  font-size: 10px;
+}
+
+.orderbookChart .axis.price text,
+.orderbookChart .axis.volume text {
+  font-size: 12px;
+}
+
+.orderbookChart path {
+  fill: none;
+  stroke: #3369a8;
+  stroke-width: 2;
+}
+
+.orderbookChart line {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+.orderbookChart .status {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  color: #aaa;
+  text-align: center;
+}
+
+.orderbookChart .hover {
+  stroke: #999;
+  stroke-width: 1;
+}
+
+.orderbookChart .focus {
+  fill: rgba(255, 255, 255, 0.5);
+  stroke: #999;
+}
+
+.orderbookChart .focus.dark {
+  fill: #555;
+  stroke: none;
+}
+
+.orderbookChart .centerline {
+  stroke: #ccddee;
+}
+
+.bookTables {
+  width: auto;
+  margin: 5px 60px 20px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #666;
+  opacity: .5;
+}
+
+.bookTables table {
+  width: 50%;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.bookTables th {
+  padding: 5px;
+  font-size: 15px;
+  font-weight: normal;
+  color: #333;
+}
+
+.bookTables th span {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.bookTables td {
+  padding: 2px 5px;
+}
+
+.bookTables td .insig {
+  color: #c0c0c0;
+}
+
+.bookTables tr:nth-child(odd) {
+  background: #f8f8f8;
+}
+
+.bookTables th.type {
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  background: #eee;
+}
+
+.bookTables .bidsTable {
+  float: left;
+}
+
+.bookTables .asksTable {
+  float: right;
+}
+
+/*
+ *  dark theme 
+ */
+
+.dark .orderbookChart .centerline {
+  stroke: #123;
+}
+
+.dark .orderbookChart .background,
+.dark .orderbookChart .hover,
+.dark .orderbookChart .axis path,
+.dark .orderbookChart .axis line {
+  stroke: #404040;
+}
+
+.dark .orderbookChart .axis text {
+  fill: #666;
+  stroke: #666;
+}
+
+.dark .orderbookChart .status {
+  color: #666;
+}
+
+.dark .bookTables {
+  color: #888;
+}
+
+.dark .bookTables table {
+  border-color: #333;
+}
+
+.dark .bookTables th.type {
+  font-weight: bold;
+  color: #777;
+  background: #222;
+}
+
+.dark .bookTables tr:nth-child(odd) {
+  background: #151515;
+}
+
+.dark .bookTables th {
+  color: #bbb;
+}
+
+.dark .bookTables th span {
+  color: #555;
+}
+
+.dark .bookTables tbody {
+  font-family: "Open Sans";
+}
+
+.dark .bookTables td .insig {
+  color: #505050;
+}
+
+@media (max-width: 767px) {
+  .bookTables table {
+    float: none !important;
+    width: 100%;
+  }
+}
+
+.tradeFeed {
+  overflow: hidden;
+  color: #444;
+}
+
+.tradeFeed .summary .price {
+  padding: 5px;
+}
+
+.tradeFeed .summary .price span {
+  display: inline-block;
+}
+
+.tradeFeed .price .amount {
+  padding: 0 5px;
+  font-size: 40px;
+  color: #444;
+}
+
+.tradeFeed .price .pair {
+  font-size: 12px;
+  color: #999;
+}
+
+.tradeFeed .daily {
+  font-size: 13px;
+}
+
+.tradeFeed .daily span {
+  display: inline-block;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.tradeFeed .daily span small {
+  margin: 0 2px;
+}
+
+.tradeFeed .daily .high {
+  color: mediumseagreen;
+}
+
+.tradeFeed .daily label {
+  font-size: 11px;
+  cursor: default;
+}
+
+.tradeFeed .daily .low {
+  color: indianred;
+}
+
+.tradeFeed .table {
+  position: relative;
+  width: 100%;
+  min-height: 50px;
+}
+
+.tradeFeed .status {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -15px;
+  font-size: 22px;
+  color: #ccc;
+}
+
+.tradeFeed .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  opacity: 0;
+}
+
+.tradeFeed table {
+  width: 100%;
+  text-align: right;
+  border: 1px solid #eee;
+  border-collapse: collapse;
+  border-left: none;
+  border-spacing: 1px;
+}
+
+.tradeFeed table tr:nth-child(odd) {
+  background: rgba(200, 200, 200, 0.05);
+}
+
+.tradeFeed table td {
+  padding: 2px 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tradeFeed table tr:hover {
+  background: rgba(150, 170, 200, 0.1);
+}
+
+.tradeFeed table small {
+  color: #999;
+}
+
+.tradeFeed table .time {
+  font-size: 12px;
+  color: #999;
+}
+
+.tradeFeed table .type {
+  width: 5px;
+  padding: 0;
+  background: #ccc;
+}
+
+.tradeFeed table .bid {
+  background: indianred;
+}
+
+.tradeFeed table .ask {
+  background: mediumseagreen;
+}
+
+.dark .tradeFeed {
+  color: #aaa;
+}
+
+.dark .tradeFeed .price .amount {
+  color: #ccc;
+}
+
+.dark .tradeFeed .pair {
+  font-weight: bold;
+  color: #666;
+}
+
+.dark .tradeFeed table {
+  font-weight: bold;
+  border-color: #333;
+}
+
+.dark .tradeFeed table tr:nth-child(odd) {
+  background: rgba(200, 200, 200, 0.1);
+}
+
+.dark .tradeFeed table tr:hover {
+  background: rgba(100, 120, 200, 0.2);
+}
+
+.dark .tradeFeed .time,
+.dark .tradeFeed small {
+  color: #666;
+}
+
+.dark .tradeFeed table td {
+  border-color: #222;
+}
+
+.dark .tradeFeed table .type {
+  background: #555;
+}
+
+.dark .tradeFeed table .bid {
+  background: #c22;
+}
+
+.dark .tradeFeed table .ask {
+  background: #4a4;
+}
+
+.dark .tradeFeed .daily .high {
+  color: #4a4;
+}
+
+.dark .tradeFeed .daily .low {
+  color: #c22;
+}
+
 .selectList label {
   display: inline-block;
   margin-right: 5px;

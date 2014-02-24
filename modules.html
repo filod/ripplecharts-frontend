@@ -49,14 +49,20 @@
     <script type="text/javascript" src="src/common/tradeFeed.js"></script>
     <script type="text/javascript" src="src/common/transactionFeed.js"></script>
     <script type="text/javascript" src="src/config.js"></script>
+    <script type="text/javascript" src="src/modules/_modules.js"></script>
+    <script type="text/javascript" src="src/modules/book.js"></script>
     <script type="text/javascript" src="src/modules/entry.js"></script>
-    <script type="text/javascript" src="src/modules/markets.js"></script>
     <script type="text/javascript" src="src/modules/orderbook.js"></script>
     <script type="text/javascript" src="src/modules/price.js"></script>
+    <script type="text/javascript" src="src/modules/tradefeed.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
     <script type="text/javascript" src="templates-modules.js"></script>
   </head>
-  <body>
-    <div ripplecharts-price></div>
+  <body ng-controller="AppCtrl">
+    <div ripplecharts-price base="base" trade="trade"></div>
+    <br><hr><br><br><hr><br>
+    <div ripplecharts-book base="base" trade="trade"></div>
+    <br><hr><br><br><hr><br>
+    <div ripplecharts-tradefeed base="base" trade="trade"></div>
   </body>
 </html>
