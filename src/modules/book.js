@@ -4,8 +4,8 @@ angular.module('ripplecharts.modules')
   return {
     restrict: 'A',
     scope: {
-      base: '=',
-      trade: '='
+      base: '=?',
+      trade: '=?'
     },
     template: '<div id="bookChart" ></div><div id="bookTables"></div>',
     link: function($scope, iElm, attrs, controller) {
