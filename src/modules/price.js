@@ -42,7 +42,6 @@ angular.module('ripplecharts.modules')
           d3.event.preventDefault();
           var that = this;
           store.set("interval", d.name);
-          store.session.set("interval", d.name);
 
           interval.classed("selected", function() { return this === that; });
           priceChart.load($scope.base, $scope.trade, d);
@@ -63,7 +62,6 @@ angular.module('ripplecharts.modules')
           d3.event.preventDefault();
           var that = this;
           store.set("chartType", d);
-          store.session.set("chartType", d);
 
           chartType.classed("selected", function() { return this === that; });
           chartType.selected = d;
