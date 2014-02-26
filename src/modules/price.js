@@ -4,16 +4,12 @@ angular.module('ripplecharts.modules')
   return {
     restrict: 'A',
     scope: {
-      base: '=?',
-      trade: '=?'
+      pair: '='
     },
     template: '<div id="interval"></div><div id="chartType"></div><div id="priceChart"></div>',
     link: function($scope, iElm, attrs, controller) {
 
       //load settings from session, local storage, options, or defaults
-      $scope.base  = $scope.base || { currency:"XRP", issuer:""};
-
-      $scope.trade = $scope.trade || { currency:"USD", issuer:"rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"};
 
       $scope.chartType = store.get('chartType') || "line";
 
@@ -81,11 +77,10 @@ angular.module('ripplecharts.modules')
 
       function loadPair () {
         var interval = d3.select("#interval .selected").datum();
-        priceChart.load($scope.base, $scope.trade, interval);
+        priceChart.load($scope.pair.base, $scope.pair.trade, interval);
       }
-      var _loadPair = _.debounce(loadPair, 50)
-      $scope.$watch('base', _loadPair, true);
-      $scope.$watch('trade', _loadPair, true);
+      var _loadPair = _.debounce(loadPair, 50);
+      $scope.$watch('pair', _loadPair, true);
       //stop the listeners when leaving page
       $scope.$on("$destroy", function(){
         priceChart.suspend();

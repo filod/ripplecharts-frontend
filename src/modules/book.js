@@ -4,15 +4,10 @@ angular.module('ripplecharts.modules')
   return {
     restrict: 'A',
     scope: {
-      base: '=?',
-      trade: '=?'
+      pair: '='
     },
     template: '<div id="bookChart" ></div><div id="bookTables"></div>',
     link: function($scope, iElm, attrs, controller) {
-
-    //load settings from session, local storage, options, or defaults
-      $scope.base  = $scope.base || { currency:"XRP", issuer:""};
-      $scope.trade = $scope.trade || { currency:"USD", issuer:"rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"};
 
 
       function emitHandler (type, data) {
@@ -34,8 +29,7 @@ angular.module('ripplecharts.modules')
         book.getMarket($scope.base, $scope.trade);
       }
       var _loadPair = _.debounce(loadPair, 50);
-      $scope.$watch('base', _loadPair, true);
-      $scope.$watch('trade', _loadPair, true);
+      $scope.$watch('pair', _loadPair, true);
 
     //stop the listeners when leaving page
       $scope.$on("$destroy", function(){

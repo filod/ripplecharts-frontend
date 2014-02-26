@@ -19,9 +19,7 @@ angular.element(document).ready(function() {
 
   angular.module('ripplecharts.modules')
   .controller('AppCtrl', function($scope){
-
-    $scope.base = { currency:"XRP", issuer:""};
-    $scope.trade = { currency:"CNY", issuer:"razqQKzJRdB4UxFPWf5NEpEG3WMkmwgcXA"};
+    $scope.pair = {"name":"XRP/CNY","order":0,"base":{"currency":"XRP"},"trade":{"currency":"CNY","issuer":"rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"}}
   });
 
 });

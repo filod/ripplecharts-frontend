@@ -59,14 +59,14 @@
     <script type="text/javascript" src="templates-modules.js"></script>
   </head>
   <body ng-controller="AppCtrl">
-    <input type="text" ng-model="base.currency" placehold="base">
-    <input type="text" ng-model="trade.currency" placehold="trade">
-    {{base}} / {{trade}}
+    <input type="text" ng-model="pair.base.currency" placehold="base">
+    <input type="text" ng-model="pair.trade.currency" placehold="trade">
+    {{pair.base}} / {{pair.trade}}
     <br><hr><br>
-    <div ripplecharts-price base="base" trade="trade"></div>
+    <div ripplecharts-price pair="pair"></div>
     <br><hr><br>
-    <div ripplecharts-book base="base" trade="trade"></div>
+    <div ripplecharts-book pair="pair"></div>
     <br><hr><br>
-    <div ripplecharts-tradefeed base="base" trade="trade"></div>
+    <div ripplecharts-tradefeed pair="pair"></div>
   </body>
 </html>
