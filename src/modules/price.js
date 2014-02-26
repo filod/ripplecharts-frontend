@@ -78,23 +78,26 @@ angular.module('ripplecharts.modules')
         resize : true
       });
 
-      priceChart.load($scope.base, $scope.trade, d3.select("#interval .selected").datum());
 
+      function loadPair () {
+        var interval = d3.select("#interval .selected").datum();
+        priceChart.load($scope.base, $scope.trade, interval);
+      }
+      var _loadPair = _.debounce(loadPair, 50)
+      $scope.$watch('base', _loadPair, true);
+      $scope.$watch('trade', _loadPair, true);
       //stop the listeners when leaving page
       $scope.$on("$destroy", function(){
         priceChart.suspend();
-        // book.suspend();
-        // tradeFeed.suspend();
-        // orderBookRemote.disconnect();
       });
       $scope.$watch('online', function(online) {
         if (online) {
           setTimeout(function(){ //put this in to prevent getting "unable to load data"
-            var interval = d3.select("#interval .selected").datum();
-            priceChart.load($scope.base, $scope.trade, interval);
+            loadPair();
           }, 100);
         }
       });
+      loadPair();
     }
   };
 }]);

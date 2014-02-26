@@ -20,7 +20,14 @@ angular.module('ripplecharts.modules')
         url    : API
       });
 
-      tradeFeed.loadPair ($scope.base, $scope.trade);
+      loadPair();
+
+      function loadPair () {
+        tradeFeed.loadPair ($scope.base, $scope.trade);
+      }
+      var _loadPair = _.debounce(loadPair, 50);
+      $scope.$watch('base', _loadPair, true);
+      $scope.$watch('trade', _loadPair, true);
 
       //stop the listeners when leaving page
       $scope.$on("$destroy", function(){
@@ -32,7 +39,7 @@ angular.module('ripplecharts.modules')
           remote.connect();
           orderBookRemote.connect();
           setTimeout(function(){ //put this in to prevent getting "unable to load data"
-            tradeFeed.loadPair ($scope.base, $scope.trade);
+            loadPair();
           }, 100);
 
         } else {
