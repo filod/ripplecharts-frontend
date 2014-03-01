@@ -2,31 +2,24 @@ angular.module('ripplecharts.modules')
 .directive('ripplechartsBook', [function(){
   // Runs during compile
   return {
-    restrict: 'A',
+    restrict: 'EA',
     scope: {
       pair: '='
     },
     template: '<div id="bookChart" ></div><div id="bookTables"></div>',
     link: function($scope, iElm, attrs, controller) {
 
-
-      function emitHandler (type, data) {
-        if (type=='spread') {
-          document.title = data.bid+"/"+data.ask+" "+$scope.base.currency+"/"+$scope.trade.currency;
-        }
-      }
       var book = new OrderBook ({
         chartID : "bookChart",
         tableID : "bookTables",
         remote  : orderBookRemote,
-        resize  : true,
-        emit    : emitHandler
+        resize  : true
       });
 
       loadPair();
 
       function loadPair () {
-        book.getMarket($scope.base, $scope.trade);
+        book.getMarket($scope.pair.base, $scope.pair.trade);
       }
       var _loadPair = _.debounce(loadPair, 50);
       $scope.$watch('pair', _loadPair, true);

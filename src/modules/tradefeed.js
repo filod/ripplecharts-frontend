@@ -2,7 +2,7 @@ angular.module('ripplecharts.modules')
 .directive('ripplechartsTradefeed', [function(){
   // Runs during compile
   return {
-    restrict: 'A',
+    restrict: 'EA',
     scope: {
       pair: '='
     },

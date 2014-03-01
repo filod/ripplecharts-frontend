@@ -63,10 +63,11 @@
     <input type="text" ng-model="pair.trade.currency" placehold="trade">
     {{pair.base}} / {{pair.trade}}
     <br><hr><br>
-    <div ripplecharts-price pair="pair"></div>
+    <!-- <ripplecharts-price pair="curPair"></ripplecharts-price> -->
+    <div ripplecharts-price pair="curPair"></div>
     <br><hr><br>
-    <div ripplecharts-book pair="pair"></div>
+    <div ripplecharts-book pair="curPair"></div>
     <br><hr><br>
-    <div ripplecharts-tradefeed pair="pair"></div>
+    <div ripplecharts-tradefeed pair="curPair"></div>
   </body>
 </html>
