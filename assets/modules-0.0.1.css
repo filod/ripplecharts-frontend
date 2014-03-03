@@ -389,6 +389,7 @@
 
 .priceChart {
   position: relative;
+  display: inline-block;
   width: 100%;
   clear: both;
 }
@@ -501,7 +502,6 @@
 
 div.chartDetails {
   position: absolute;
-  top: 1px;
   padding: 1px 5px;
   font-size: 14px;
   color: #333;
