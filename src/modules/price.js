@@ -66,7 +66,7 @@ angular.module('ripplecharts.modules')
 
       //set up the price chart
       var priceChart = new PriceChart ({
-        id     : "#priceChart",
+        id     : "priceChart",
         url    : API,
         type   : $scope.chartType,
         live   : true,
