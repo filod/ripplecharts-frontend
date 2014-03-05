@@ -76,7 +76,7 @@ angular.module('ripplecharts.modules')
 
 
       function loadPair () {
-        var interval = d3.select("#interval .selected").datum();
+        var interval = d3.select(iElm[0]).select("#interval .selected").datum();
         priceChart.load($scope.pair.base, $scope.pair.trade, interval);
       }
       var _loadPair = _.debounce(loadPair, 50);
