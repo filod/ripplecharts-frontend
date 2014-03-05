@@ -16,7 +16,7 @@ angular.module('ripplecharts.modules')
       $scope.interval  = store.get('interval') || "1h";
 
       //set up the interval selector
-      var list = d3.select("#interval").attr("class","selectList");
+      var list = d3.select(iElm[0]).select("#interval").attr("class","selectList");
       list.append("label").html("分时:");
       var interval = list.selectAll("a")
         .data([
@@ -48,7 +48,7 @@ angular.module('ripplecharts.modules')
         'line': '折线图',
         'candlestick': 'K 线图'
       };
-      var chartType = d3.select("#chartType").attr("class","selectList").selectAll("a")
+      var chartType = d3.select(iElm[0]).select("#chartType").attr("class","selectList").selectAll("a")
         .data(["line", "candlestick"])
         .enter().append("a")
         .attr("href", "#")
