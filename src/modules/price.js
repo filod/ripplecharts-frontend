@@ -1,25 +1,22 @@
 angular.module('ripplecharts.modules')
-.directive('ripplechartsPrice', [function(){
-  var iid = 'interval' + Math.random().toString(32).slice(2)
-  var ctid = 'chartType' + Math.random().toString(32).slice(2)
-  var pcid = 'priceChart' + Math.random().toString(32).slice(2)
-  // Runs during compile
+.directive('ripplechartsPrice', ['$timeout', '$rootScope', function($timeout, $rootScope){
+
   return {
     restrict: 'EA',
     scope: {
       pair: '='
     },
-    template: '<div id="' + iid + '"></div><div id="' + ctid + '"></div><div id="' + pcid + '"></div>',
+    template: '<div id="interval"></div><div id="chartType"></div><div class="chartContainer"></div>',
     link: function($scope, iElm, attrs, controller) {
-
+      var id = 'c' + Math.random().toString(16).slice(2)
+      iElm.find('.chartContainer').attr('id', id)
       //load settings from session, local storage, options, or defaults
-
       $scope.chartType = store.get('chartType') || "line";
 
       $scope.interval  = store.get('interval') || "1h";
 
       //set up the interval selector
-      var list = d3.select('#' + iid).attr("class","selectList");
+      var list = d3.select(iElm[0]).select("#interval").attr("class","selectList");
       list.append("label").html("分时:");
       var interval = list.selectAll("a")
         .data([
@@ -43,7 +40,7 @@ angular.module('ripplecharts.modules')
           store.set("interval", d.name);
 
           interval.classed("selected", function() { return this === that; });
-          priceChart.load($scope.base, $scope.trade, d);
+          priceChart.load($scope.pair.base, $scope.pair.trade, d);
         });
 
       //set up the chart type selector
@@ -51,7 +48,7 @@ angular.module('ripplecharts.modules')
         'line': '折线图',
         'candlestick': 'K 线图'
       };
-      var chartType = d3.select('#' + ctid).attr("class","selectList").selectAll("a")
+      var chartType = d3.select(iElm[0]).select("#chartType").attr("class","selectList").selectAll("a")
         .data(["line", "candlestick"])
         .enter().append("a")
         .attr("href", "#")
@@ -69,7 +66,7 @@ angular.module('ripplecharts.modules')
 
       //set up the price chart
       var priceChart = new PriceChart ({
-        id     : pcid,
+        id     : id,
         url    : API,
         type   : $scope.chartType,
         live   : true,
@@ -79,7 +76,7 @@ angular.module('ripplecharts.modules')
 
 
       function loadPair () {
-        var interval = d3.select(iElm[0]).select('#' + iid + " .selected").datum();
+        var interval = d3.select(iElm[0]).select("#interval .selected").datum();
         priceChart.load($scope.pair.base, $scope.pair.trade, interval);
       }
       var _loadPair = _.debounce(loadPair, 50);
