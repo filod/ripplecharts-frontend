@@ -18,14 +18,18 @@ ApiHandler = function (url) {
 
         if (response.length>1) {
           if (params.reduce===false) {
+
+            response.shift(); //remove header row
             data = response.map(function(d) {
-              d = JSON.parse(d);
+
               return {
-                id     : d.id,
-                time   : moment.utc(d.key.slice(2)), 
-                amount : d.value[1],
-                price  : d.value[2],        
-                type   : ''
+                time    : moment.utc(d[0]),
+                price   : d[1],   
+                amount  : d[2], 
+                amount2 : d[3],
+                tx      : d[4], 
+                id      : d[5],    
+                type    : ''
               }
             });
             
@@ -92,7 +96,6 @@ ApiHandler = function (url) {
     request.post(JSON.stringify(params))
       .on('load', function(xhr) {
         var response = JSON.parse(xhr.response);  
-        console.log(response); 
         load(response);
       })
       .on('error', function(xhr){
@@ -144,12 +147,16 @@ ApiHandler = function (url) {
   this.getTopMarkets = function (callback, error) {
     var request = apiRequest("topMarkets");
     
-    request.post("")
+    request.post(JSON.stringify({
+      exchange : {
+        currency : "USD",
+        issuer   : "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"
+      }      
+    }))
     .on('load', function(xhr){   
-      var response = JSON.parse(xhr.response);
-      response.splice(0,1); //remove first  
+      var response = JSON.parse(xhr.response); 
       callback(response);
-      
+
     }).on('error', function(xhr){
       console.log(xhr.response);
       if (error) error({status:xhr.status,text:xhr.statusText,message:xhr.response});
