@@ -484,7 +484,7 @@ PriceChart = function (options) {
       .attr("y", function(d){return volumeScale(d.volume)})
       .attr("width", candleWidth/1.2)
       .attr("height", function(d){return options.height - volumeScale(d.volume)})
-      .style("fill", "url(#gradient)")
+      // .style("fill", "url(#gradient)")
 
     bars.exit().remove();
 

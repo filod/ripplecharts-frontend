@@ -12,7 +12,7 @@ function CapChart(options) {
   //var DATEFORMAT = null;
   
   if (!options.margin) options.margin = {top: 5, right: 60, bottom: 20, left: 60};
-  if (!options.width)  options.width  = parseInt(div.style('width'), 10) - options.margin.left - options.margin.right;
+  if (!options.width)  options.width  = parseInt(chart.style('width'), 10) - options.margin.left - options.margin.right;
   if (!options.height) options.height = options.width/2.25>400 ? options.width/2.25 :400;
   
   self.currency = options.currency || "USD";
@@ -137,7 +137,7 @@ function CapChart(options) {
      
   function resizeChart () {
     old = options.width;
-    w = parseInt(div.style('width'), 10);
+    w = parseInt(chart.style('width'), 10);
     options.width  = w-options.margin.left - options.margin.right;
     options.height = options.width/2.25>400 ? options.width/2.25 : 400;
     
@@ -616,8 +616,8 @@ function CapChart(options) {
       line.enter().append("g").attr("class","line");
       line.exit().remove();
       
-      var p = line.selectAll("path").data(function(d){return[d]});
-      p.enter().append("path")
+      var p = line.selectAll(".l").data(function(d){return[d]});
+      p.enter().append("path").attr("class","l")
         .on("mouseover", movingOnLine);
         
       p.transition().attr("d", function(d) {
@@ -626,8 +626,19 @@ function CapChart(options) {
           .y(function(d) { return yScale(d[1]); }); 
           return l(d.results);
       }).style("stroke", function(d) { return color(d.address || d.issuer); });
-        
+       
       p.exit().remove();
+      
+      var a = line.selectAll(".a").data(function(d){return[d]});
+        a.enter().append("path").attr("class","a");
+       
+      a.transition().attr("d", function (d){
+        var area = d3.svg.area()
+          .x(function(d) { return xScale(d[0]); })
+          .y0(options.height)
+          .y1(function(d) { return yScale(d[1]); });  
+          return area(d.results);
+      }).style("fill", function(d) { return color(d.address || d.issuer); });  
     }
     
     var ticks = options.width/60-(options.width/60)%2;
@@ -674,7 +685,7 @@ function CapChart(options) {
   }
   
   function movingInSky() {
-    var top, date, i, j, cx, cy, position, zoom = div.style("zoom") || 1;
+    var top, date, i, j, cx, cy, position, zoom = chart.style("zoom") || 1;
 
     if (self.format=="stacked") {
       if (!sections || !sections.length) return;
@@ -682,11 +693,11 @@ function CapChart(options) {
       top  = sections[sections.length-1].values;
       date = xScale.invert(d3.mouse(this)[0]/zoom);
       i    = d3.bisect(top.map(function(d){return d.date}), date);
-   
+      
 
       if (!top || !top[i]) return;
       
-      if (date<(top[i].date+top[i-1].date)/2) i--;
+      if (i && date<(top[i].date+top[i-1].date)/2) i--;
       cy = yScale(top[i].y+top[i].y0)+options.margin.top;
       cx = xScale(top[i].date)+options.margin.left;
 
@@ -732,7 +743,7 @@ function CapChart(options) {
 
   function movingInGround(section) {
     var tx, ty;
-    var zoom = div.style("zoom") || 1;
+    var zoom = chart.style("zoom") || 1;
     var date = xScale.invert(d3.mouse(this)[0]/zoom);
     var i    = d3.bisect(section.values.map(function(d){return d.date}), date);
     
@@ -756,7 +767,7 @@ function CapChart(options) {
   
   function movingOnLine(line) {
     var tx, ty;
-    var zoom = div.style("zoom") || 1;
+    var zoom = chart.style("zoom") || 1;
     var date = xScale.invert(d3.mouse(this)[0]/zoom);
     var i    = d3.bisect(line.results.map(function(d){return d[0]}), date);
  
