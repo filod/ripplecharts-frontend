@@ -33,13 +33,13 @@ var TradeFeed = function (options) {
 
 
 //load the latest trade feed for the given pair
-  this.loadPair = function (base, trade) {
-    self.base  = base;
-    self.trade = trade;
+  this.loadPair = function (base, counter) {
+    self.base    = base;
+    self.counter = counter;
     high = low = close = volume = 0;
 
-    if (listener) listener.updateViewOpts({base:base,trade:trade});
-    else listener = new OffersExercisedListener({base:base,trade:trade}, handleTransaction);
+    if (listener) listener.updateViewOpts({base:base,counter:counter});
+    else listener = new OffersExercisedListener({base:base,counter:counter}, handleTransaction);
 
 /*
     //mock data
@@ -69,12 +69,12 @@ var TradeFeed = function (options) {
 
 //process incoming transaction from the live feed handler
   function handleTransaction (data) {
-
+    console.log(data);
     var last = transactions[0];
 
     var trade = {
-      time   : moment.utc(data.key.slice(2)),
-      amount : data.value[1], //oddly backwards from my expectation
+      time   : moment.utc(data.value[5]),
+      amount : data.value[0],
       price  : data.value[2],
       type   : ''
     }
@@ -149,7 +149,7 @@ var TradeFeed = function (options) {
       endTime       : now.toDate(),
       timeIncrement : 'all',
       base          : self.base,
-      trade         : self.trade
+      counter       : self.counter
 
     }, function(data){
 
@@ -175,7 +175,7 @@ var TradeFeed = function (options) {
       daily.select(".low").html("<small>L:</small> "+valueFilter(low));
       daily.select(".volume").html("<small>VOL:</small> "+valueFilter(volume)+"<small>"+self.base.currency+"</small>");
       price.select(".amount").html(valueFilter(close));
-      price.select(".pair").html(self.base.currency+"/"+self.trade.currency);
+      price.select(".pair").html(self.base.currency+"/"+self.counter.currency);
   }
 
 
@@ -198,7 +198,7 @@ var TradeFeed = function (options) {
       endTime    : now.toDate(),
       reduce     : false,
       base       : self.base,
-      trade      : self.trade,
+      counter    : self.counter,
       descending : true,
       limit      : 50
 
