@@ -1,7 +1,3 @@
-@import url(priceChart.css);
-
-@import url(orderBook.css);
-
 /* animation for png loader */
 
 @keyframes rotating {
@@ -199,7 +195,7 @@
 }
 
 /*
- *  dark theme 
+ *  dark theme
  */
 
 .dark .rippleStatus {
@@ -208,7 +204,7 @@
 }
 
 /*
- * Responsive tweaks 
+ * Responsive tweaks
  */
 
 .markets .span3 {
@@ -332,6 +328,12 @@
 }
 
 @media (max-width: 480px) {
+  .markets #priceChart,
+  .markets .controls,
+  .markets #bookChart,
+  .markets #bookTables {
+    zoom: 0.75;
+  }
   #currencyPair select {
     padding: 5px 40px 5px 5px;
     font-size: 16px;
