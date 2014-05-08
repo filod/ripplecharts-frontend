@@ -327,13 +327,13 @@ PriceChart = function (options) {
 
     candle.startTime = moment.utc(candle.startTime);
     candle.live      = true;
-
-    console.log(candle);
-    console.log(last.startTime.format(), candle.startTime.format());
-
+    
+    //console.log(candle);  
+    //console.log(last.startTime.format(), candle.startTime.format());
+    
     if (last && last.startTime.unix()===candle.startTime.unix()) {
-      console.log("update");
-/*
+      //console.log("update");     
+/*      
       if (!last.live) {  //historical data
         var volume = candle.volume + last.volume;
         if (candle.high<last.high) candle.high = last.high;
@@ -346,8 +346,8 @@ PriceChart = function (options) {
 */
       lineData[lineData.length-1] = candle;
     } else {
-      console.log("new");
-
+      //console.log("new");
+      
       //new candle, only add it if something happened
       if (candle.baseVolume) {
         lineData.push(candle); //append the candle

@@ -69,7 +69,6 @@ var TradeFeed = function (options) {
 
 //process incoming transaction from the live feed handler
   function handleTransaction (data) {
-    console.log(data);
     var last = transactions[0];
 
     var trade = {
@@ -152,12 +151,12 @@ var TradeFeed = function (options) {
       counter       : self.counter
 
     }, function(data){
-
+      
       if (data && data.length) {
         //TODO: should be comparing the existing high and low
         high   = data[0].high;
         low    = data[0].low;
-        volume = data[0].volume;
+        volume = data[0].baseVolume;
         if (!close) close = data[0].close; //dont overwrite existing
       }
 

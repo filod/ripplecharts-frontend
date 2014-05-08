@@ -83,7 +83,8 @@ var OrderBook = function (options) {
     bookTables.transition().style("opacity", 0.5);
     fadeChart();
     isLoading = true;
-
+    if (!r.connected) r.connect();
+    
     if (asks) {
       asks.removeListener('model', handleAskModel);
       r.request_unsubscribe()
