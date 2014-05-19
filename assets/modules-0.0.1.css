@@ -444,6 +444,7 @@
   fill: none;
   stroke: #3369a8;
   stroke-width: 2;
+  stroke-linejoin: round;
 }
 
 .priceChart line {
@@ -651,6 +652,7 @@ div.chartDetails .volume {
   fill: none;
   stroke: #3369a8;
   stroke-width: 2;
+  stroke-linejoin: round;
 }
 
 .orderbookChart line {

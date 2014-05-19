@@ -317,6 +317,7 @@ PriceChart = function (options) {
       removeResizeListener(window, resizeChart);
   }
 
+  this.resizeChart = resizeChart;
 
 //add new data from the live feed to the chart
   function liveUpdate (data) {

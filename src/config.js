@@ -1,5 +1,5 @@
 //API url to backend
-API      = "http://api.ripplecharts.com/api";
+API      = "http://data-api.rippay.com/api";
 MIXPANEL = "";
 
 Options = {
@@ -15,8 +15,8 @@ Options = {
     trusted : false,
 
     servers: [
-      { host: 's_west.ripple.com', port: 443, secure: true },
-      { host: 's_east.ripple.com', port: 443, secure: true }
+      { host: '106.186.119.132', port: 5006, secure: false }
+      // { host: 's_west.ripple.com', port: 443, secure: true }
     ],
 
     connection_offset: 0
